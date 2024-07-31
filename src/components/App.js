@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Change this to real auth logic
-
+const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -18,18 +16,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-const Login = ({ onLogin }) => (
-  <div>
-    <h2>Login Page</h2>
-    <button onClick={() => onLogin(true)}>Login</button>
-  </div>
-);
-
-const Home = () => (
-  <div className="main-container">
-    <h2>Home Page (Private)</h2>
-  </div>
-);
+// ... rest of your code ...
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,6 +35,7 @@ const App = () => {
             render={(props) => <Login onLogin={setIsAuthenticated} />}
           />
           <PrivateRoute
+            isAuthenticated={isAuthenticated}
             path="/home"
             component={Home}
           />
