@@ -36,10 +36,11 @@ const App = () => {
             path="/login"
             element={<Login onLogin={setIsAuthenticated} />}
           />
-          <PrivateRoute
-            isAuthenticated={isAuthenticated}
+          <Route
             path="/home"
-            element={<Home />}
+            element={
+              isAuthenticated ? <Home /> : <Navigate to="/login" />
+            }
           />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
