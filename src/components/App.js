@@ -15,7 +15,6 @@ const Login = ({ onLogin }) => {
     </div>
   );
 };
-
 const Home = () => (
   <div>
     <h2>Home Page</h2>
