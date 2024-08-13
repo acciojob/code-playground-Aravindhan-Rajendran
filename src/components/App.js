@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute.js'; // Ensure this path is correct
+import PrivateRoute from './PrivateRoute'; // Ensure this path is correct
 
 // Dummy components for demonstration
 const Login = ({ onLogin }) => {
