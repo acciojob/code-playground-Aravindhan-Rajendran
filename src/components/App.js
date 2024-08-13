@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute'; // Ensure this path is correct
 
 // Dummy components for demonstration
 const Login = ({ onLogin }) => {
@@ -22,12 +22,6 @@ const Home = () => (
   </div>
 );
 
-const Playground = () => (
-  <div>
-    <h2>Playground Page</h2>
-  </div>
-);
-
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -36,8 +30,7 @@ const App = () => {
       <div className="main-container">
         <nav>
           <Link to="/login">Login</Link>
-          {isAuthenticated && <Link to="/home">Home</Link>}
-          {isAuthenticated && <Link to="/playground">Playground</Link>}
+          <Link to="/home">Home</Link>
         </nav>
         <Switch>
           <Route
@@ -49,11 +42,6 @@ const App = () => {
             isAuthenticated={isAuthenticated}
             path="/home"
             component={Home}
-          />
-          <PrivateRoute
-            isAuthenticated={isAuthenticated}
-            path="/playground"
-            component={Playground}
           />
           <Redirect from="/" to="/login" />
         </Switch>
