@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute'; // Import the PrivateRoute component
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute'; // Ensure this path is correct
 
-// Dummy components for demonstration
 const Login = ({ onLogin }) => {
   const handleLogin = () => {
     onLogin(true); // Simulate login and update authentication state
@@ -32,19 +31,14 @@ const App = () => {
           <Link to="/login">Login</Link>
           <Link to="/home">Home</Link>
         </nav>
-        <Switch>
+        <Routes>
+          <Route path="/login" element={<Login onLogin={setIsAuthenticated} />} />
           <Route
-            path="/login"
-            exact
-            render={(props) => <Login onLogin={setIsAuthenticated} />}
-          />
-          <PrivateRoute
-            isAuthenticated={isAuthenticated}
             path="/home"
-            component={Home}
+            element={<PrivateRoute isAuthenticated={isAuthenticated} element={Home} />}
           />
-          <Redirect from="/" to="/login" />
-        </Switch>
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
       </div>
     </Router>
   );
