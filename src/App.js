@@ -19,7 +19,6 @@ const App = () => {
   return (
     <Router>
       <div className="main-container">
-        <p>You are not authendicated, Please login first</p>
           <ul>
             <li>
               <Link to="/playground">Playground</Link>
@@ -51,6 +50,7 @@ const App = () => {
             path="/login"
             element={
               <div>
+                        <p>You are not authendicated, Please login first</p>
                 <p>Page Not Found</p>
                 <button onClick={handleLogin}>Login</button>
               </div>
