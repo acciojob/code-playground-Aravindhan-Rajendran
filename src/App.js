@@ -39,7 +39,7 @@ const App = () => {
                 <Navigate to="/" />
               ) : (
                 <div>
-                  <p>You are not authenticated. Please log in first.</p>
+                  <p>You are not authenticated, Please log in first.</p>
                   <button onClick={handleLoginLogout}>Login</button>
                 </div>
               )
