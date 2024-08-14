@@ -8,7 +8,10 @@ const HomePage = () => {
       <p>You are not authenticated, Please login first</p>
       <ul>
         <li>
-          <Link to="/playground">PlayGround</Link> | <Link to="/login">Login</Link>
+          <Link to="/playground">PlayGround</Link> 
+          </li>
+          <li>
+           <Link to="/login">Login</Link>
         </li>
         <li>
           <p>Page Not Found</p>
