@@ -1,41 +1,64 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import LoginPage from './components/LoginPage';
-import Playground from './components/PlayGround'; // Ensure this matches the actual file name
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
 
   const handleLogin = () => {
-    setAuthenticated(true);
+    if (username) {
+      setAuthenticated(true);
+    }
+  };
+
+  const handleLogout = () => {
+    setAuthenticated(false);
+    setUsername('');
   };
 
   return (
     <Router>
-      <div className="app">
-        <nav>
-          <Link to="/">Home</Link> | <Link to="/login">Login</Link> |{' '}
-          <Link to="/playground">PlayGround</Link>
-        </nav>
+      <div className="main-container">
+        <p>You are not authendicated, Please login first</p>
+          <ul>
+            <li>
+              <Link to="/playground">Playground</Link>
+            </li>
+            {authenticated ? (
+              <li>
+                <Link to="/" onClick={handleLogout}>Logout</Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            )}
+          </ul>
         <Routes>
           <Route
             path="/"
             element={
               authenticated ? (
-                <HomePage />
+                <div>
+                  <p>Hi, welcome to Code Playground</p>
+                </div>
               ) : (
-                <p>You are not authenticated. Please log in first.</p>
+                <Navigate to="/login" />
               )
             }
           />
           <Route
             path="/login"
-            element={<LoginPage onLogin={handleLogin} />}
+            element={
+              <div>
+                <p>Page Not Found</p>
+                <button onClick={handleLogin}>Login</button>
+              </div>
+            }
           />
           <Route
             path="/playground"
-            element={authenticated ? <Playground /> : <Navigate to="/login" />}
+            element={authenticated ? <div>Hi, welcome to the Playground</div> : <Navigate to="/login" />}
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
