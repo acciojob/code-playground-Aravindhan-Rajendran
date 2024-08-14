@@ -14,7 +14,7 @@ const App = () => {
       {authenticated ? 'Logged in, Now you can enter Playground' : 'You are not authenticated, Please login first'}
         <ul>
           <li>
-            <Link to="/playground">Playground</Link>
+            <Link to="/playground">PlayGround</Link>
           </li>
           <li>
             <Link to="/login">Login</Link>
@@ -48,7 +48,7 @@ const App = () => {
           />
           <Route
             path="/playground"
-            element={authenticated ? <div>Hi, welcome to the Playground</div> : <Navigate to="/login" />}
+            element={authenticated ? <div>Hi Welcome to Code PlayGround</div> : <Navigate to="/login" />}
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
