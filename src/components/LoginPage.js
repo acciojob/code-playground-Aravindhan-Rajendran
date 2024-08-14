@@ -1,11 +1,14 @@
-// src/components/LoginPage.js
 import React from 'react';
 
 const LoginPage = ({ onLogin }) => {
+  const handleLogin = () => {
+    onLogin();
+  };
+
   return (
-    <div className="main-container">
+    <div>
       <h2>Login Page</h2>
-      <button onClick={onLogin}>Login</button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

@@ -19,7 +19,16 @@ const App = () => {
           <Link to="/playground">PlayGround</Link>
         </nav>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              authenticated ? (
+                <HomePage />
+              ) : (
+                <p>You are not authenticated. Please log in first.</p>
+              )
+            }
+          />
           <Route
             path="/login"
             element={<LoginPage onLogin={handleLogin} />}
