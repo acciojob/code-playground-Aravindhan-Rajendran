@@ -11,6 +11,7 @@ const App = () => {
   return (
     <Router>
       <div className="main-container">
+      {authenticated ? 'Logged in, Now you can enter Playground' : 'You are not authenticated, Please login first'}
         <ul>
           <li>
             <Link to="/playground">Playground</Link>
@@ -19,14 +20,15 @@ const App = () => {
             <Link to="/login">Login</Link>
           </li>
         </ul>
+        <button onClick={handleLoginLogout}>
+          {authenticated ? 'Log Out' : 'Log In'}
+        </button>
         <Routes>
           <Route
             path="/"
             element={
               authenticated ? (
-                <div>
-                  <p>Hi, welcome to Code Playground</p>
-                </div>
+                <Navigate to="/playground" />
               ) : (
                 <Navigate to="/login" />
               )
@@ -36,11 +38,10 @@ const App = () => {
             path="/login"
             element={
               authenticated ? (
-                <Navigate to="/" />
+                <Navigate to="/playground" />
               ) : (
                 <div>
-                  <p>You are not authenticated, Please log in first.</p>
-                  <button onClick={handleLoginLogout}>Login</button>
+                  <p>Login</p>
                 </div>
               )
             }
