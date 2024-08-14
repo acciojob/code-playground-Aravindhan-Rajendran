@@ -14,7 +14,7 @@ const App = () => {
       {authenticated ? 'Logged in, Now you can enter Playground' : 'You are not authenticated, Please login first'}
         <ul>
           <li>
-            <Link to="/playground">Playground</Link>
+            <Link to="/playground">PlayGround</Link>
           </li>
           <li>
             <Link to="/login">Login</Link>
