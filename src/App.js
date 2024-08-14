@@ -11,8 +11,8 @@ const App = () => {
   return (
     <Router>
       <div className="main-container">
-      {authenticated ? 'Logged in, Now you can enter Playground' : 'You are not authenticated, Please login first'}
         <ul>
+        {authenticated ? 'Logged in, Now you can enter Playground' : 'You are not authenticated, Please login first'}
           <li>
             <Link to="/playground">PlayGround</Link>
           </li>
