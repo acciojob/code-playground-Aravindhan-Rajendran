@@ -3,36 +3,22 @@ import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-ro
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
-  const [username, setUsername] = useState('');
 
-  const handleLogin = () => {
-    if (username) {
-      setAuthenticated(true);
-    }
-  };
-
-  const handleLogout = () => {
-    setAuthenticated(false);
-    setUsername('');
+  const handleLoginLogout = () => {
+    setAuthenticated(!authenticated);
   };
 
   return (
     <Router>
       <div className="main-container">
-          <ul>
-            <li>
-              <Link to="/playground">Playground</Link>
-            </li>
-            {authenticated ? (
-              <li>
-                <Link to="/" onClick={handleLogout}>Logout</Link>
-              </li>
-            ) : (
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            )}
-          </ul>
+        <ul>
+          <li>
+            <Link to="/playground">Playground</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </ul>
         <Routes>
           <Route
             path="/"
@@ -49,11 +35,14 @@ const App = () => {
           <Route
             path="/login"
             element={
-              <div>
-                        <p>You are not authendicated, Please login first</p>
-                <p>Page Not Found</p>
-                <button onClick={handleLogin}>Login</button>
-              </div>
+              authenticated ? (
+                <Navigate to="/" />
+              ) : (
+                <div>
+                  <p>You are not authenticated. Please log in first.</p>
+                  <button onClick={handleLoginLogout}>Login</button>
+                </div>
+              )
             }
           />
           <Route
